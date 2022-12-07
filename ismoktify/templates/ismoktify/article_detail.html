@@ -1,0 +1,14 @@
+{% extends 'ismoktify/base.html' %}
+{% block title %}Courses{% endblock %}
+{% block active_course_list%} active{% endblock %}
+{% block content %}
+<br>
+<div style="width: 80vw; margin: 0 auto">
+    <div class="d-flex flex-row">
+    <h1>{{ article.title }}<h1>
+    <a class="btn btn-outline-warning" href='{{ article.id }}/edit' role="button">Edit</a>
+    </div>
+    <hr>
+    {{article.content.html|safe}}
+</div>
+{% endblock %}

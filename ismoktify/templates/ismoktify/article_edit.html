@@ -1,0 +1,15 @@
+{% extends 'ismoktify/base.html' %}
+{% block head %}
+    {{ form.media }}
+{% endblock %}
+{% block active_new_article %} active{% endblock %}
+{% block content %}
+<div style="width: 80vw; margin: 0 auto">
+<form action="" method="POST">{% csrf_token %}
+    {{ form.title }}
+    {{ form.content }}
+    <br>
+    <button type="submit" class="btn btn-warning submit-button">Update article</button>
+</form>
+</div>
+{% endblock %}

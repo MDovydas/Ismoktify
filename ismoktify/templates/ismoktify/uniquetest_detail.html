@@ -1,0 +1,23 @@
+{% extends 'ismoktify/base.html' %} 
+{% load crispy_forms_tags %} 
+{% block head %} 
+    {{ form.media }}
+{% endblock %}
+{% block active_new_article %} active{%endblock %} 
+{% block content %}
+<div style="width: 80vw; margin: 0 auto">
+    <form action="" method="POST">{% csrf_token %}
+    {% for question in uniquetest.questions.all %}
+    <fieldset>
+        <legend>{{question.content}}</legend>
+        {% for answer in question.answer_set.all %}
+        <input type="checkbox"  class="form-check-input" name="{{answer.question.id}}"" id="id_{{ answer.id }}" value="{{ answer.is_true }}">
+        <label for="id_{{ answer.id }}">{{ answer.content }}</label>
+        <br>
+        {% endfor %}
+        <hr>
+    </fieldset>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary submit-button">Submit</button>
+    </form>
+{% endblock %}

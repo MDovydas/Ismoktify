@@ -1,0 +1,10 @@
+{% extends 'ismoktify/base.html' %} 
+{% load crispy_forms_tags %} 
+{% block head %} 
+    {{ form.media }}
+{% endblock %}
+{% block active_new_article %} active{%endblock %} 
+{% block content %}
+<div style="width: 80vw; margin: 0 auto">
+    <h1>YOUR SCORE: {{score}}</h1>
+{% endblock %}

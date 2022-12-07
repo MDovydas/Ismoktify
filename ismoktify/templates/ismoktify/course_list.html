@@ -1,0 +1,25 @@
+{% extends 'ismoktify/base.html' %}
+{% load static %} {% load ismoktify_extras %}
+{% block title %}Courses{% endblock %}
+{% block active_course_list%} active{% endblock %}
+{% block content %}
+<div style="width: 80vw; margin:0 auto;">
+    <h1> List of availible courses</h1>
+    {% if course_list %}
+        <ul class="list-group">
+            {% for course in course_list %}
+                <li class="list-group-item">
+                    <a class="link-dark" href="{{ course.name }}">{{ course.name }}<a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There is no availible courses</p>
+    {% endif %}
+    {% if request.user|has_group:"Teacher" %}
+    <a href="{% url 'ismoktify:new_course' %}">
+        <button type="submit" class="btn btn-warning submit-button">Create new Course</button>
+    </a>
+    </div>
+    {% endif %}
+{% endblock %}

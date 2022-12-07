@@ -1,0 +1,40 @@
+{% extends "ismoktify/base.html" %} 
+{% load crispy_forms_tags %}
+{% block content %}
+{% if form.errors %}
+<p>Error. Try Again</p>
+{% endif %} {% if next %} {% if user.is_authenticated %}
+<p>Neturite prieigos prie šios informacijos. Turite prisijungti.</p>
+{% endif %} {% endif %}
+<div style="width: 800px; margin: 0 auto">
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      {{form.username |crispy}}
+      <label for="id_username">Login</label>
+      <input
+        name="username"
+        type="text"
+        class="form-control"
+        id="username"
+        aria-describedby="usernameHelp"
+      />
+    </div>
+    <div class="mb-3">
+      {{form.password|crispy}}
+      <label for="id_password">Password</label>
+      <input
+        name="password"
+        type="password"
+        class="form-control"
+        id="password"
+        aria-describedby="pwdHelp"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+
+  <p><a href="{% url 'password_reset' %}">Pamiršote slaptažodį?</a></p>
+</div>
+{% endblock %}

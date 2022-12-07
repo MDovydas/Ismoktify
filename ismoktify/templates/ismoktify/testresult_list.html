@@ -1,0 +1,17 @@
+{% extends 'ismoktify/base.html' %} 
+{% load crispy_forms_tags %} 
+{% block head %} 
+    {{ form.media }}
+{% endblock %}
+{% block active_teacher %} active{%endblock %} 
+{% block content %}
+<div style="width: 80vw; margin: 0 auto">
+    <table class="table">
+    {% for result in object_list %}
+        <tr>
+        <th>{{result.user}}</th>
+        <th>{{result.score}}</th>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

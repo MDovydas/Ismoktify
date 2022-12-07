@@ -1,0 +1,29 @@
+{% extends 'ismoktify/base.html' %}
+{% load static %} {% load ismoktify_extras %}
+{% block title %}Courses{% endblock %}
+{% block active_course_list%} active{% endblock %}
+{% block content %}
+    <div style="width: 80vw; margin: 0 auto">
+    <h1>{{course.name}}</h1>
+        <ul class="list-group">
+        {% for article in articles %}
+            <li class="list-group-item"><a style="font-size: 1.7em" class="link-dark" href='{{article.course.name}}/{{article.id}}'>{{article.title}}</a></li>
+        {% endfor %}
+        </ul>
+        {% if request.user|has_group:"Teacher" %}
+        <div class="d-flex flex-row">
+        {% if course.test_set.all.count > 0 %}
+        <a class="btn btn-warning" href='{% url "ismoktify:test_detail" course.test_set.all.0.id %}' role="button" style='margin-right:40px'>{{ course.test_set.all.0.title }}</a>
+        {% else %}
+        <a  class="btn btn-warning" href='{{ course.name }}/new_test' role='button' style='margin-right:40px'>Add Test<a>
+        {% endif %}
+        <a class="btn btn-warning" href='{% url "ismoktify:new_article"%}' role='button'>New article<a>
+        </div>
+        {% endif %}
+        {% if request.user|has_group:"Student" %}
+        {{course.test_set.id}}
+        <a  class="btn btn-success" href="{% url 'ismoktify:test_generator' course.test_set.all.0.id  %}" role='button' style='margin-right:40px'>Quiz<a>
+        {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'ismoktify/base.html' %} 
+{% load crispy_forms_tags %} 
+{% block head %} 
+    {{ form.media }}
+{% endblock %}
+{% block active_new_article %} active{%endblock %} 
+{% block content %}
+    <h1 style="width: 80vw; margin: 0 auto">New Course</h1>
+    <br />
+    <div style="width: 80vw; margin: 0 auto">
+    <form action="" method="POST">
+        {% csrf_token %} {{ form|crispy }}
+        <button type="submit" class="btn btn-warning submit-button">
+        Create new Course
+        </button>
+    </form>
+    </div>
+{% endblock %}
